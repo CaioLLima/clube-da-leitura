@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClubeDaLeitura.Compartilhado
 {
-    internal class RepositorioBase
+    public class RepositorioBase
     {
     }
 }

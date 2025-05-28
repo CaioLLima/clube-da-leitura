@@ -6,12 +6,19 @@ using System.Threading.Tasks;
 
 namespace ClubeDaLeitura.ModuloAmigos
 {
-    internal class Amigo
+    public class Amigo
     {
+        public int id;
         public string nome;
         public string responsavel;
         public string telefone;
 
+        public Amigo(string nome, string responsavel, string telefone)
+        {
+            this.nome = nome;
+            this.responsavel = responsavel;
+            this.telefone = telefone;
+        }
         public void Validar()
         {
 

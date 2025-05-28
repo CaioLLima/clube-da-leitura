@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace ClubeDaLeitura.ModuloAmigos
 {
-    internal class RepositorioAmigo
+    public class RepositorioAmigo
     {
+        public int contador = 0;
+        public Amigo[] amigos = new Amigo[100];
+
+        public void CadastrarRegistro(Amigo amigo)
+        {
+            amigo.id = contador;
+            amigos[contador] = amigo;
+            contador++;
+        }
     }
 }
