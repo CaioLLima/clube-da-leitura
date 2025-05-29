@@ -24,6 +24,16 @@ namespace ClubeDaLeitura.ModuloAmigos
 
         }
 
+        public void AtualizarRegistro(Amigo amigoAtualizado)
+        {
+            Amigo amigo = amigoAtualizado;
+
+            this.nome = amigoAtualizado.nome;
+            this.responsavel = amigoAtualizado.responsavel;
+            this.telefone = amigoAtualizado.telefone;
+
+        }
+
         public void ObterEmprestimos()
         {
 
