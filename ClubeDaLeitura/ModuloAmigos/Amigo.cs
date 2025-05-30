@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ClubeDaLeitura.Compartilhado;
 
 namespace ClubeDaLeitura.ModuloAmigos
 {
-    public class Amigo
+    public class Amigo : EntidadeBase
     {
         public int id;
         public string nome;
@@ -19,14 +20,14 @@ namespace ClubeDaLeitura.ModuloAmigos
             this.responsavel = responsavel;
             this.telefone = telefone;
         }
-        public void Validar()
+        public override void Validar()
         {
 
         }
 
-        public void AtualizarRegistro(Amigo amigoAtualizado)
+        public override void AtualizarRegistro(EntidadeBase registroAtualizado)
         {
-            Amigo amigo = amigoAtualizado;
+            Amigo amigoAtualizado = (Amigo)registroAtualizado;
 
             this.nome = amigoAtualizado.nome;
             this.responsavel = amigoAtualizado.responsavel;

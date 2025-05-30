@@ -6,11 +6,11 @@ namespace ClubeDaLeitura
     {
         static void Main(string[] args)
         {
-            TelaAmigo telaAmigo = new();
-
+            RepositorioAmigo repositorioAmigo = new();
+            TelaAmigo telaAmigo = new(repositorioAmigo);
             Console.WriteLine("Trabalho 02 - Clube da leitura");
 
-            while(true)
+            while (true)
             {
                 char opcaoMenuPrincipal = ApresentarMenuPrincipal();
 
@@ -18,7 +18,27 @@ namespace ClubeDaLeitura
 
                 switch (opcaoMenuPrincipal)
                 {
-                    case '1': telaAmigo.SelecionarOperacao(); break;
+                    case '1':
+                        char opcaoEscolhida = telaAmigo.SelecionarOperacao();
+
+                        switch (opcaoEscolhida)
+                        {
+                            case '1':
+                                telaAmigo.CadastrarRegistro();
+                                break;
+                            case '2':
+                                telaAmigo.EditarRegistro();
+                                break;
+                            case '3':
+                                telaAmigo.VisualizarRegistro();
+                                break;
+                            case '4':
+                                telaAmigo.ExcluirRegistro();
+                                break;
+                            case 'S':     
+                                break;
+                        }
+                        break;
                 }
             }
         }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ClubeDaLeitura.Compartilhado
+﻿namespace ClubeDaLeitura.Compartilhado
 {
     public abstract class TelaBase
     {
@@ -16,7 +10,7 @@ namespace ClubeDaLeitura.Compartilhado
             this.nomeEntidade = nomeEntidade;
             this.repositorio = repositorio;
         }
-        protected char SelecionarOperacao()
+        public char SelecionarOperacao()
         {
             Console.Clear();
             Console.WriteLine("Controle de Chamados");
@@ -30,5 +24,54 @@ namespace ClubeDaLeitura.Compartilhado
             char opcaoEscolhida = Console.ReadLine().ToUpper()[0];
             return opcaoEscolhida;
         }
+        public void CadastrarRegistro()
+        {
+            Console.Clear();
+            Console.WriteLine($"Cadastro de novo {nomeEntidade}");
+            Console.WriteLine();
+            EntidadeBase registro = ObterDados();
+
+            repositorio.CadastrarRegistro(registro);
+        }
+        public void EditarRegistro()
+        {
+            Console.Clear();
+            Console.WriteLine($"Edição de {nomeEntidade}");
+            Console.WriteLine();
+
+            VisualizarRegistro();
+
+            Console.Write($"Insira o ID do {nomeEntidade} que deseja selecionar: ");
+            int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+            EntidadeBase registroAtualizado = ObterDados();
+
+            bool conseguiuEditar = repositorio.EditarRegistro(registroAtualizado, idSelecionado);
+
+            if (!conseguiuEditar)
+            {
+                Console.WriteLine("Não foi possível encontrar o registro selecionado.");
+                Console.ReadLine();
+
+                return;
+            }
+
+            Console.WriteLine($"\n{nomeEntidade} editado com sucesso!");
+            Console.ReadLine();
+        }
+        public void ExcluirRegistro()
+        {
+            Console.WriteLine($"Exclusão de {nomeEntidade}\n");
+
+            VisualizarRegistro();
+
+            Console.Write($"Insira o ID do {nomeEntidade} que deseja deletar: ");
+            int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+            repositorio.ExcluirRegistro(idSelecionado);
+        }
+        public abstract void VisualizarRegistro();
+        public abstract EntidadeBase ObterDados();
+
     }
 }
