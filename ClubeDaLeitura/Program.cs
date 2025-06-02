@@ -1,4 +1,5 @@
 ﻿using ClubeDaLeitura.ModuloAmigos;
+using ClubeDaLeitura.ModuloCaixas;
 
 namespace ClubeDaLeitura
 {
@@ -7,7 +8,10 @@ namespace ClubeDaLeitura
         static void Main(string[] args)
         {
             RepositorioAmigo repositorioAmigo = new();
+            RepositorioCaixa repositorioCaixa = new();
+
             TelaAmigo telaAmigo = new(repositorioAmigo);
+            TelaCaixa telaCaixa = new(repositorioCaixa);
             Console.WriteLine("Trabalho 02 - Clube da leitura");
 
             while (true)
@@ -35,7 +39,28 @@ namespace ClubeDaLeitura
                             case '4':
                                 telaAmigo.ExcluirRegistro();
                                 break;
-                            case 'S':     
+                            case 'S':
+                                break;
+                        }
+                        break;
+                    case '3':
+                        opcaoEscolhida = telaAmigo.SelecionarOperacao();
+
+                        switch (opcaoEscolhida)
+                        {
+                            case '1':
+                                telaCaixa.CadastrarRegistro();
+                                break;
+                            case '2':
+                                telaCaixa.EditarRegistro();
+                                break;
+                            case '3':
+                                telaCaixa.VisualizarRegistro();
+                                break;
+                            case '4':
+                                telaCaixa.ExcluirRegistro();
+                                break;
+                            case 'S':
                                 break;
                         }
                         break;
