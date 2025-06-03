@@ -13,7 +13,7 @@
         public char SelecionarOperacao()
         {
             Console.Clear();
-            Console.WriteLine("Controle de Chamados");
+            Console.WriteLine($"Controle de {nomeEntidade}");
             Console.WriteLine("O que deseja realizar?");
             Console.WriteLine($"1 - Registrar {nomeEntidade}");
             Console.WriteLine($"2 - Editar {nomeEntidade}");

@@ -41,11 +41,11 @@ namespace ClubeDaLeitura.ModuloAmigos
         }
         public override Amigo ObterDados()
         {
-            Console.WriteLine("Insira o nome do amigo: ");
+            Console.Write("Insira o nome do amigo: ");
             string nome = Console.ReadLine();
-            Console.WriteLine("Insira o nome do resposavel: ");
+            Console.Write("Insira o nome do resposavel: ");
             string responsavel = Console.ReadLine();
-            Console.WriteLine("Insira o número de telefone: ");
+            Console.Write("Insira o número de telefone: ");
             string telefone = Console.ReadLine();
 
             Amigo amigo = new(nome, responsavel, telefone);

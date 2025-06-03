@@ -42,11 +42,11 @@ namespace ClubeDaLeitura.ModuloCaixas
         }
         public override Caixa ObterDados()
         {
-            Console.WriteLine("Insira a Etiqueta: ");
+            Console.Write("Insira a Etiqueta: ");
             string etiqueta = Console.ReadLine();
-            Console.WriteLine("Insira a cor: ");
+            Console.Write("Insira a cor: ");
             string cor = Console.ReadLine();
-            Console.WriteLine("Insira os dias de empréstimo: ");
+            Console.Write("Insira os dias de empréstimo: ");
             string diasEmprestimo = Console.ReadLine();
 
             Caixa caixa = new(etiqueta, cor, diasEmprestimo);
