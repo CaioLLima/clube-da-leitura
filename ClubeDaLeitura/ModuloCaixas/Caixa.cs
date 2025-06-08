@@ -14,6 +14,12 @@ namespace ClubeDaLeitura.ModuloCaixas
         public string Cor { get; set; }
         public int DiasEmprestimo { get; set; }
 
+        public Caixa(string etiqueta, string cor)
+        {
+            Etiqueta = etiqueta;
+            Cor = cor;
+            DiasEmprestimo = 7;
+        }
         public Caixa(string etiqueta, string cor, int diasEmprestimo)
         {
             Etiqueta = etiqueta;
@@ -22,7 +28,18 @@ namespace ClubeDaLeitura.ModuloCaixas
         }
         public override string Validar()
         {
-            return "";
+            string erros = string.Empty;
+
+            if (string.IsNullOrWhiteSpace(Etiqueta) || Etiqueta.Length > 50)
+                erros += "O campo \"Etiqueta\" é obrigatório e recebe no máximo 50 caracteres.";
+
+            if (string.IsNullOrWhiteSpace(Cor))
+                erros += "O campo \"Cor\" é obrigatório.";
+
+            if (DiasEmprestimo < 1)
+                erros += "O campo \"Dias de Empréstimo\" deve conter um valor maior que 0.";
+
+            return erros;
         }
 
         public override void AtualizarRegistro(EntidadeBase registroAtualizado)

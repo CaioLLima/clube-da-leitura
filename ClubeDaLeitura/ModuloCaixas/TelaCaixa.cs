@@ -10,19 +10,17 @@ namespace ClubeDaLeitura.ModuloCaixas
 {
     public class TelaCaixa : TelaBase
     {
-        private RepositorioCaixa repositorioCaixa = new();
-        public TelaCaixa(RepositorioCaixa repositorioC) : base("Caixa", repositorioC)
+        public TelaCaixa(RepositorioCaixa repositorio) : base("Caixa", repositorio)
         {
-            repositorioCaixa = repositorioC;
         }
         public override void VisualizarRegistro()
         {
             Console.WriteLine("Caixas Cadastrados");
             Console.WriteLine(
-                "{0, -10} | {1, -25} | {2, -10} | {3, -10}",
-                "ID", "Etiqueta", "Cor", "Data de Empréstimo"
+                "{0, -10} | {1, -30} | {2, -30} | {3, -30}",
+                "ID", "Etiqueta", "Cor", "Dias de Empréstimo"
             );
-            EntidadeBase[] caixas = repositorioCaixa.SelecionarRegistros();
+            EntidadeBase[] caixas = repositorio.SelecionarRegistros();
 
             for (int i = 0; i < caixas.Length; i++)
             {
@@ -33,8 +31,8 @@ namespace ClubeDaLeitura.ModuloCaixas
                     continue;
                 }
                 Console.WriteLine(
-                "{0, -10} | {1, -25} | {2, -10} | {3, -10}",
-                a.id, a.etiqueta, a.cor, a.diasEmprestimo
+                "{0, -10} | {1, -30} | {2, -30} | {3, -30}",
+                a.Id, a.Etiqueta, a.Cor, a.DiasEmprestimo
             );
             }
             Console.WriteLine("Pressione ENTER para continuar...");
@@ -46,10 +44,16 @@ namespace ClubeDaLeitura.ModuloCaixas
             string etiqueta = Console.ReadLine();
             Console.Write("Insira a cor: ");
             string cor = Console.ReadLine();
-            Console.Write("Insira os dias de empréstimo: ");
-            int diasEmprestimo = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Dias de Empréstimo (opcional): ");
+            bool conseguiuConverter = int.TryParse(Console.ReadLine(), out int diasEmprestimo);
 
-            Caixa caixa = new(etiqueta, cor, diasEmprestimo);
+            Caixa caixa;
+
+            if (conseguiuConverter)
+                caixa = new Caixa(etiqueta, cor, diasEmprestimo);
+            else
+                caixa = new Caixa(etiqueta, cor);
+
 
             return caixa;
         }

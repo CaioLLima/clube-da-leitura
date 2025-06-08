@@ -106,7 +106,7 @@ namespace ClubeDaLeitura.ModuloEmprestimos
                 }
                 Console.WriteLine(
                 "{0, -10} | {1, -25} | {2, -10} | {3, -10} | {4, -10} | {5, -10}",
-                a.id, a.titulo, a.numEdicao, a.dataPublicacao, a.statusEmprestimo, a.caixa.etiqueta
+                a.id, a.titulo, a.numEdicao, a.dataPublicacao, a.statusEmprestimo, a.caixa.Etiqueta
             );
             }
             Console.WriteLine("Pressione ENTER para continuar...");
