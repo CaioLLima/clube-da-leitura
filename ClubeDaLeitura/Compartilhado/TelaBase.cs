@@ -24,7 +24,7 @@
             char opcaoEscolhida = Console.ReadLine().ToUpper()[0];
             return opcaoEscolhida;
         }
-        public void CadastrarRegistro()
+        public virtual void CadastrarRegistro()
         {
             Console.Clear();
             Console.WriteLine($"Cadastro de novo {nomeEntidade}");
@@ -54,7 +54,7 @@
             Console.WriteLine($"\n{nomeEntidade} cadastrado com sucesso!");
             Console.ReadLine();
         }
-        public void EditarRegistro()
+        public virtual void EditarRegistro()
         {
             Console.Clear();
             Console.WriteLine($"Edição de {nomeEntidade}");
