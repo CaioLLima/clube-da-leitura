@@ -11,40 +11,52 @@ namespace ClubeDaLeitura.ModuloRevistas
 {
     public class Revista : EntidadeBase
     {
-        public int id;
-        public string titulo;
-        public string numEdicao;
-        public string dataPublicacao;
-        public Caixa caixa;
-        public string statusEmprestimo;
+        public string Titulo { get; set; }
+        public int NumeroEdicao { get; set; }
+        public int AnoPublicacao { get; set; }
+        public Caixa Caixa { get; set; }
+        public string Status { get; set; }
 
-        public Revista(string titulo, string numEdicao, string dataPublicacao, Caixa caixa)
+        public Revista(string titulo, int numeroEdicao, int anoPublicacao, Caixa caixa)
         {
-            this.titulo = titulo;
-            this.numEdicao = numEdicao;
-            this.dataPublicacao = dataPublicacao;
-            this.caixa = caixa;
+            Titulo = titulo;
+            NumeroEdicao = numeroEdicao;
+            AnoPublicacao = anoPublicacao;
+            Caixa = caixa;
+            Status = "Disponível";
         }
         public override string Validar()
         {
+            string erros = string.Empty;
 
-            return "";
+            if (Titulo.Length < 2 || Titulo.Length > 100)
+                erros += "O campo \"Título\" deve conter entre 2 e 100 caracteres.";
+
+            if (NumeroEdicao < 1)
+                erros += "O campo \"Número da Edição\" deve conter um valor maior que 0.";
+
+            if (AnoPublicacao < DateTime.MinValue.Year || AnoPublicacao > DateTime.Now.Year)
+                erros += "O campo \"Ano de Publicação\" deve conter um valor válido no passado ou presente.";
+
+            if (Caixa == null)
+                erros += "O campo \"Caixa\" é obrigatório.";
+
+            return erros;
         }
 
         public override void AtualizarRegistro(EntidadeBase registroAtualizado)
         {
-            Revista revistaAtualizado = (Revista)registroAtualizado;
+            Revista revistaAtualizada = (Revista)registroAtualizado;
 
-            this.titulo = revistaAtualizado.titulo;
-            this.numEdicao = revistaAtualizado.numEdicao;
-            this.dataPublicacao = revistaAtualizado.dataPublicacao;
-            this.caixa = revistaAtualizado.caixa;
-            this.statusEmprestimo = "Disponível";
+            Titulo = revistaAtualizada.Titulo;
+            NumeroEdicao = revistaAtualizada.NumeroEdicao;
+            AnoPublicacao = revistaAtualizada.AnoPublicacao;
+            Caixa = revistaAtualizada.Caixa;
 
         }
         public void Emprestar()
         {
-            statusEmprestimo = "Emprestada";
+            //statusEmprestimo = "Emprestada";
         }
 
     }

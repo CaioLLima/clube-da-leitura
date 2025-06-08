@@ -56,7 +56,7 @@ namespace ClubeDaLeitura.ModuloEmprestimos
                 }
                 Console.WriteLine(
                 "{0, -10} | {1, -25} | {2, -10} | {3, -10} | {4, -10} | {5, -10}",
-                a.id, a.amigo.Nome, a.revista.titulo, a.dataEmprestimo, a.dataDevolucao, a.revista.statusEmprestimo
+                a.id, a.amigo.Nome, a.revista.Titulo, a.dataEmprestimo, a.dataDevolucao, a.revista.Status
             );
             }
             Console.WriteLine("Pressione ENTER para continuar...");
@@ -106,7 +106,7 @@ namespace ClubeDaLeitura.ModuloEmprestimos
                 }
                 Console.WriteLine(
                 "{0, -10} | {1, -25} | {2, -10} | {3, -10} | {4, -10} | {5, -10}",
-                a.id, a.titulo, a.numEdicao, a.dataPublicacao, a.statusEmprestimo, a.caixa.Etiqueta
+                a.Id, a.Titulo, a.NumeroEdicao, a.AnoPublicacao, a.Status, a.Caixa.Etiqueta
             );
             }
             Console.WriteLine("Pressione ENTER para continuar...");
