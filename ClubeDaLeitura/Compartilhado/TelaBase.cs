@@ -10,7 +10,7 @@
             this.nomeEntidade = nomeEntidade;
             this.repositorio = repositorio;
         }
-        public char SelecionarOperacao()
+        public virtual char SelecionarOperacao()
         {
             Console.Clear();
             Console.WriteLine($"Controle de {nomeEntidade}");

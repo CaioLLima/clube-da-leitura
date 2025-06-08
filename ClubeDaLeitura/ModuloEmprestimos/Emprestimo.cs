@@ -11,36 +11,36 @@ namespace ClubeDaLeitura.ModuloEmprestimos
 {
     public class Emprestimo : EntidadeBase
     {
-        public int id;
-        public Amigo amigo;
-        public Revista revista;
-        public DateTime dataEmprestimo;
-        public DateTime dataDevolucao;
-        public string situacao;
+        public Amigo Amigo { get; set; }
+        public Revista Revista { get; set; }
+        public DateTime DataEmprestimo { get; set; }
+        public DateTime DataDevolucao { get; set; }
+        public string Status { get; set; }
 
-        public Emprestimo(Amigo amigo, Revista revista, DateTime dataEmprestimo, string situacao)
+        public Emprestimo(Amigo amigo, Revista revista)
         {
-            this.amigo = amigo;
-            this.revista = revista;
-            this.dataEmprestimo = dataEmprestimo;
-            this.situacao = situacao;
+            this.Amigo = amigo;
+            this.Revista = revista;
+            this.DataEmprestimo = DateTime.Now;
+            DataDevolucao = DataEmprestimo.AddDays(Revista.Caixa.DiasEmprestimo);
+            this.Status = "Aberto";
         }
         public override string Validar()
         {
-            return "";
-        }
-        public void ObterDataDevolucao()
-        {
+            string erros = string.Empty;
 
-        }
-        public void RegistrarDevolucao()
-        {
+            if (Amigo == null)
+                erros += "O campo \"Amigo\" é obrigatório.";
 
+            if (Revista == null)
+                erros += "O campo \"Revista\" é obrigatório.";
+
+            return erros;
         }
 
         public override void AtualizarRegistro(EntidadeBase registroAtualizado)
         {
-
+            Status = "Concluído";
         }
     }
 }
