@@ -9,10 +9,8 @@ namespace ClubeDaLeitura.ModuloAmigos
 {
     public class TelaAmigo : TelaBase
     {
-        private RepositorioAmigo repositorioAmigo = new();
-        public TelaAmigo(RepositorioAmigo repositorioA) : base("Amigo", repositorioA)
+        public TelaAmigo(RepositorioAmigo repositorio) : base("Amigo", repositorio)
         {
-            repositorioAmigo = repositorioA;
         }
         public override void VisualizarRegistro()
         {
@@ -21,7 +19,7 @@ namespace ClubeDaLeitura.ModuloAmigos
                 "{0, -10} | {1, -25} | {2, -10} | {3, -10}",
                 "ID", "Nome", "Responsável", "Telefone"
             );
-            EntidadeBase[] amigos = repositorioAmigo.SelecionarRegistros();
+            EntidadeBase[] amigos = repositorio.SelecionarRegistros();
 
             for(int i = 0; i < amigos.Length; i++)
             {
@@ -33,7 +31,7 @@ namespace ClubeDaLeitura.ModuloAmigos
                 }
                 Console.WriteLine(
                 "{0, -10} | {1, -25} | {2, -10} | {3, -10}",
-                a.id, a.nome, a.responsavel, a.telefone
+                a.Id, a.Nome, a.NomeResponsavel, a.Telefone
             );
             }
             Console.WriteLine("Pressione ENTER para continuar...");

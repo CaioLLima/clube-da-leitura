@@ -29,9 +29,30 @@
             Console.Clear();
             Console.WriteLine($"Cadastro de novo {nomeEntidade}");
             Console.WriteLine();
-            EntidadeBase registro = ObterDados();
+            EntidadeBase novoRegistro = ObterDados();
 
-            repositorio.CadastrarRegistro(registro);
+            string erros = novoRegistro.Validar();
+
+            if (erros.Length > 0)
+            {
+                Console.WriteLine();
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(erros);
+                Console.ResetColor();
+
+                Console.Write("\nDigite ENTER para continuar...");
+                Console.ReadLine();
+
+                CadastrarRegistro();
+
+                return;
+            }
+
+            repositorio.CadastrarRegistro(novoRegistro);
+
+            Console.WriteLine($"\n{nomeEntidade} cadastrado com sucesso!");
+            Console.ReadLine();
         }
         public void EditarRegistro()
         {

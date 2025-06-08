@@ -10,35 +10,30 @@ namespace ClubeDaLeitura.ModuloCaixas
 {
     public class Caixa : EntidadeBase
     {
-        public int id;
-        public string etiqueta;
-        public string cor;
-        public string diasEmprestimo;
+        public string Etiqueta { get; set; }
+        public string Cor { get; set; }
+        public int DiasEmprestimo { get; set; }
 
-        public Caixa(string etiqueta, string cor, string diasEmprestimo)
+        public Caixa(string etiqueta, string cor, int diasEmprestimo)
         {
-            this.etiqueta = etiqueta;
-            this.cor = cor;
-            this.diasEmprestimo = diasEmprestimo;
+            Etiqueta = etiqueta;
+            Cor = cor;
+            DiasEmprestimo = diasEmprestimo;
         }
-        public override void Validar()
+        public override string Validar()
         {
-
+            return "";
         }
 
         public override void AtualizarRegistro(EntidadeBase registroAtualizado)
         {
             Caixa amigoAtualizado = (Caixa)registroAtualizado;
 
-            this.etiqueta = amigoAtualizado.etiqueta;
-            this.cor = amigoAtualizado.cor;
-            this.diasEmprestimo = amigoAtualizado.diasEmprestimo;
+            this.Etiqueta = amigoAtualizado.Etiqueta;
+            this.Cor = amigoAtualizado.Cor;
+            this.DiasEmprestimo = amigoAtualizado.DiasEmprestimo;
 
         }
 
-        public void ObterEmprestimos()
-        {
-
-        }
     }
 }

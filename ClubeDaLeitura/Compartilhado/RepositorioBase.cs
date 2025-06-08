@@ -14,7 +14,7 @@ namespace ClubeDaLeitura.Compartilhado
 
         public void CadastrarRegistro(EntidadeBase registro)
         {
-            registro.id = contadorRegistros;
+            registro.Id = contadorRegistros;
             registros[contadorRegistros] = registro;
             contadorRegistros++;
         }
@@ -36,7 +36,7 @@ namespace ClubeDaLeitura.Compartilhado
                 if (registros[i] == null)
                     continue;
 
-                if (registros[i].id == idSelecionado)
+                if (registros[i].Id == idSelecionado)
                 {
                     registros[i] = null;
 

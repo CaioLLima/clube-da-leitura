@@ -7,5 +7,5 @@ using ClubeDaLeitura.Compartilhado;
 
 namespace ClubeDaLeitura.ModuloEmprestimos
 {
-    internal class RepositorioEmprestimo : RepositorioBase;
+    public class RepositorioEmprestimo : RepositorioBase;
 }

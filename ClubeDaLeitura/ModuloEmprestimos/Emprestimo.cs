@@ -18,21 +18,27 @@ namespace ClubeDaLeitura.ModuloEmprestimos
         public DateTime dataDevolucao;
         public string situacao;
 
-        public Emprestimo(Amigo amigo, Revista revista, string situacao)
+        public Emprestimo(Amigo amigo, Revista revista, DateTime dataEmprestimo, string situacao)
         {
             this.amigo = amigo;
             this.revista = revista;
+            this.dataEmprestimo = dataEmprestimo;
             this.situacao = situacao;
         }
-        public override void Validar()
+        public override string Validar()
         {
-
+            return "";
         }
         public void ObterDataDevolucao()
         {
 
         }
         public void RegistrarDevolucao()
+        {
+
+        }
+
+        public override void AtualizarRegistro(EntidadeBase registroAtualizado)
         {
 
         }

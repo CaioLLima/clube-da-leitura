@@ -25,9 +25,10 @@ namespace ClubeDaLeitura.ModuloRevistas
             this.dataPublicacao = dataPublicacao;
             this.caixa = caixa;
         }
-        public override void Validar()
+        public override string Validar()
         {
 
+            return "";
         }
 
         public override void AtualizarRegistro(EntidadeBase registroAtualizado)
@@ -38,12 +39,13 @@ namespace ClubeDaLeitura.ModuloRevistas
             this.numEdicao = revistaAtualizado.numEdicao;
             this.dataPublicacao = revistaAtualizado.dataPublicacao;
             this.caixa = revistaAtualizado.caixa;
+            this.statusEmprestimo = "Disponível";
 
         }
-
-        public void ObterEmprestimos()
+        public void Emprestar()
         {
-
+            statusEmprestimo = "Emprestada";
         }
+
     }
 }

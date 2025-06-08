@@ -22,8 +22,8 @@ namespace ClubeDaLeitura.ModuloRevistas
         {
             Console.WriteLine("Revistas Cadastrados");
             Console.WriteLine(
-                "{0, -10} | {1, -25} | {2, -10} | {3, -10} | {4, -10}",
-                "ID", "Titulo", "Numero de Serie", "Data de publicação", "Caixa"
+                "{0, -10} | {1, -25} | {2, -10} | {3, -10} | {4, -10} | {5 -10}",
+                "ID", "Titulo", "Numero de Serie", "Data de publicação", "Status", "Caixa"
             );
             EntidadeBase[] revistas = repositorioRevista.SelecionarRegistros();
 
@@ -36,8 +36,8 @@ namespace ClubeDaLeitura.ModuloRevistas
                     continue;
                 }
                 Console.WriteLine(
-                "{0, -10} | {1, -25} | {2, -10} | {3, -10} | {4, -10}",
-                a.id, a.titulo, a.numEdicao, a.dataPublicacao, a.caixa
+                "{0, -10} | {1, -25} | {2, -10} | {3, -10} | {4, -10} | {5, -10}",
+                a.id, a.titulo, a.numEdicao, a.dataPublicacao,a.statusEmprestimo, a.caixa.etiqueta
             );
             }
             Console.WriteLine("Pressione ENTER para continuar...");
@@ -81,7 +81,7 @@ namespace ClubeDaLeitura.ModuloRevistas
 
             VisualizarCaixas();
 
-            Console.Write("Digite o ID do caixa que deseja selecionar: ");
+            Console.Write("Digite o ID do caixa que deseja inserir a revista: ");
             int idCaixa = Convert.ToInt32(Console.ReadLine());
 
             EntidadeBase  caixaSelecionada = repositorioCaixa.SelecionarRegistroPorID(idCaixa);

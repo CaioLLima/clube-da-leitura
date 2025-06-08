@@ -47,7 +47,7 @@ namespace ClubeDaLeitura.ModuloCaixas
             Console.Write("Insira a cor: ");
             string cor = Console.ReadLine();
             Console.Write("Insira os dias de empréstimo: ");
-            string diasEmprestimo = Console.ReadLine();
+            int diasEmprestimo = Convert.ToInt32(Console.ReadLine());
 
             Caixa caixa = new(etiqueta, cor, diasEmprestimo);
 
