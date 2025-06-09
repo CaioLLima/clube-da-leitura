@@ -1,4 +1,5 @@
-﻿using ClubeDaLeitura.ModuloAmigos;
+﻿using ClubeDaLeitura.Compartilhado;
+using ClubeDaLeitura.ModuloAmigos;
 using ClubeDaLeitura.ModuloCaixas;
 using ClubeDaLeitura.ModuloEmprestimos;
 using ClubeDaLeitura.ModuloRevistas;
@@ -9,121 +10,65 @@ namespace ClubeDaLeitura
     {
         static void Main(string[] args)
         {
-            RepositorioAmigo repositorioAmigo = new();
-            RepositorioRevista repositorioRevista = new();
-            RepositorioCaixa repositorioCaixa = new();
-            RepositorioEmprestimo repositorioEmprestimo = new();
+            TelaPrincipal telaPrincipal = new();
 
-            TelaAmigo telaAmigo = new(repositorioAmigo);
-            TelaCaixa telaCaixa = new(repositorioCaixa);
-            TelaRevista telaRevista = new(repositorioRevista, repositorioCaixa);
-            TelaEmprestimo telaEmprestimo = new(repositorioEmprestimo, repositorioAmigo, repositorioRevista, repositorioCaixa);
             Console.WriteLine("Trabalho 02 - Clube da leitura");
 
             while (true)
             {
-                char opcaoMenuPrincipal = ApresentarMenuPrincipal();
+                telaPrincipal.ApresentarMenuPrincipal();
 
-                if (opcaoMenuPrincipal == 'S') break;
+                TelaBase telaEscolhida = telaPrincipal.ObterTela();
 
-                switch (opcaoMenuPrincipal)
+                if (telaEscolhida == null)
+                    break;
+
+                char opcaoEscolhida = telaEscolhida.SelecionarOperacao();
+
+                if (opcaoEscolhida == 'S' || opcaoEscolhida == 's')
+                    break;
+
+                if (telaEscolhida is TelaEmprestimo)
                 {
-                    case '1':
-                        char opcaoEscolhida = telaAmigo.SelecionarOperacao();
+                    TelaEmprestimo telaEmprestimo = (TelaEmprestimo)telaEscolhida;
 
-                        switch (opcaoEscolhida)
-                        {
-                            case '1':
-                                telaAmigo.CadastrarRegistro();
-                                break;
-                            case '2':
-                                telaAmigo.EditarRegistro();
-                                break;
-                            case '3':
-                                telaAmigo.VisualizarRegistro();
-                                break;
-                            case '4':
-                                telaAmigo.ExcluirRegistro();
-                                break;
-                            case 'S':
-                                break;
-                        }
-                        break;
-                    case '2':
-                        opcaoEscolhida = telaCaixa.SelecionarOperacao();
+                    switch (opcaoEscolhida)
+                    {
+                        case '1':
+                            telaEmprestimo.CadastrarEmprestimo();
+                            break;
 
-                        switch (opcaoEscolhida)
-                        {
-                            case '1':
-                                telaCaixa.CadastrarRegistro();
-                                break;
-                            case '2':
-                                telaCaixa.EditarRegistro();
-                                break;
-                            case '3':
-                                telaCaixa.VisualizarRegistro();
-                                break;
-                            case '4':
-                                telaCaixa.ExcluirRegistro();
-                                break;
-                            case 'S':
-                                break;
-                        }
-                        break;
-                    case '3':
-                        opcaoEscolhida = telaRevista.SelecionarOperacao();
+                        case '2':
+                            telaEmprestimo.DevolverEmprestimo();
+                            break;
 
-                        switch (opcaoEscolhida)
-                        {
-                            case '1':
-                                telaRevista.CadastrarRegistro();
-                                break;
-                            case '2':
-                                telaRevista.EditarRegistro();
-                                break;
-                            case '3':
-                                telaRevista.VisualizarRegistro();
-                                break;
-                            case '4':
-                                telaRevista.ExcluirRegistro();
-                                break;
-                            case 'S':
-                                break;
-                        }
-                        break;
-                    case '4':
-                        opcaoEscolhida = telaEmprestimo.SelecionarOperacaoEmprestimo();
+                        case '3':
+                            telaEmprestimo.VisualizarRegistro();
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (opcaoEscolhida)
+                    {
+                        case '1':
+                            telaEscolhida.CadastrarRegistro();
+                            break;
 
-                        switch (opcaoEscolhida)
-                        {
-                            case '1':
-                                telaEmprestimo.RegistrarEmprestimo();
-                                break;
-                            case '2':
-                                telaRevista.EditarRegistro();
-                                break;
-                            case '3':
-                                telaEmprestimo.VisualizarRegistro();
-                                break;                          
-                            case 'S':
-                                break;
-                        }
-                        break;
+                        case '2':
+                            telaEscolhida.VisualizarRegistro();
+                            break;
+
+                        case '3':
+                            telaEscolhida.EditarRegistro();
+                            break;
+
+                        case '4':
+                            telaEscolhida.ExcluirRegistro();
+                            break;
+                    }
                 }
             }
-        }
-
-        public static char ApresentarMenuPrincipal()
-        {
-            Console.Clear();
-            Console.WriteLine("Qual opção deseja selecionar?");
-            Console.WriteLine("1 - Controle de Amigos");
-            Console.WriteLine("2 - Controle de Caixas");
-            Console.WriteLine("3 - Controle de Revistas");
-            Console.WriteLine("4 - Controle de Empréstimos");
-            Console.WriteLine("S - Sair");
-            char opcao = Console.ReadLine().ToUpper()[0];
-            return opcao;
         }
     }
 }

@@ -93,6 +93,107 @@ namespace ClubeDaLeitura.ModuloEmprestimos
             Console.WriteLine("Pressione ENTER para continuar...");
             Console.ReadLine();
         }
+        public void CadastrarEmprestimo()
+        {
+
+            Console.WriteLine($"Cadastro de {nomeEntidade}");
+
+            Console.WriteLine();
+
+            Emprestimo novoRegistro = (Emprestimo)ObterDados();
+
+            string erros = novoRegistro.Validar();
+
+            if (erros.Length > 0)
+            {
+                Console.WriteLine();
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(erros);
+                Console.ResetColor();
+
+                CadastrarRegistro();
+
+                return;
+            }
+
+            Emprestimo[] emprestimosAtivos = repositorioEmprestimo.SelecionarEmprestimosAtivos();
+
+            for (int i = 0; i < emprestimosAtivos.Length; i++)
+            {
+                Emprestimo emprestimoAtivo = emprestimosAtivos[i];
+
+                if (novoRegistro.Amigo.Id == emprestimoAtivo.Amigo.Id)
+                {
+                    Console.WriteLine();
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("O amigo selecionado já tem um empréstimo ativo!");
+                    Console.ResetColor();
+
+                    Console.Write("\nDigite ENTER para continuar...");
+                    Console.ReadLine();
+
+                    return;
+                }
+            }
+
+            novoRegistro.Revista.Status = "Emprestada";
+
+            repositorio.CadastrarRegistro(novoRegistro);
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"\n{nomeEntidade} cadastrado com sucesso!");
+            Console.ResetColor();
+
+            Console.ReadLine();
+        }
+        public void DevolverEmprestimo()
+        {
+
+            Console.WriteLine($"Devolução de {nomeEntidade}");
+
+            Console.WriteLine();
+
+            VisualizarEmprestimosAtivos();
+
+            Console.Write("Digite o ID do emprestimo que deseja concluir: ");
+            int idEmprestimo = Convert.ToInt32(Console.ReadLine());
+
+            Emprestimo emprestimoSelecionado = (Emprestimo)repositorio.SelecionarRegistroPorID(idEmprestimo);
+
+            if (emprestimoSelecionado == null)
+            {
+                Console.WriteLine();
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("O empréstimo selecionado não existe!");
+                Console.ResetColor();
+
+                Console.Write("\nDigite ENTER para continuar...");
+                Console.ReadLine();
+
+                return;
+            }
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("\nDeseja confirmar a conclusão do empréstimo? Esta ação é irreversível. (s/N): ");
+            Console.ResetColor();
+
+            string resposta = Console.ReadLine()!;
+
+            if (resposta.ToUpper() == "S")
+            {
+                emprestimoSelecionado.Status = "Concluído";
+                emprestimoSelecionado.Revista.Status = "Disponível";
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"\n{nomeEntidade} concluído com sucesso!");
+                Console.ResetColor();
+
+                Console.ReadLine();
+            }
+        }
         public void VisualizarAmigos()
         {
             Console.WriteLine("Amigos Cadastrados");

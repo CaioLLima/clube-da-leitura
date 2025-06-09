@@ -20,7 +20,7 @@ namespace ClubeDaLeitura.ModuloRevistas
         {
             Console.WriteLine("Revistas Cadastrados");
             Console.WriteLine(
-                "{0, -10} | {1, -30} | {2, -20} | {3, -20} | {4, -20} | {5, -20}",
+                "{0, -5} | {1, -30} | {2, -20} | {3, -20} | {4, -20} | {5, -20}",
                 "ID", "Titulo", "Numero de Serie", "Data de publicação", "Status", "Caixa"
             );
             EntidadeBase[] revistas = repositorio.SelecionarRegistros();
@@ -34,7 +34,7 @@ namespace ClubeDaLeitura.ModuloRevistas
                     continue;
                 }
                 Console.WriteLine(
-                "{0, -10} | {1, -30} | {2, -20} | {3, -20} | {4, -20} | {5, -20}",
+                "{0, -5} | {1, -30} | {2, -20} | {3, -20} | {4, -20} | {5, -20}",
                 a.Id, a.Titulo, a.NumeroEdicao, a.AnoPublicacao,a.Status, a.Caixa.Etiqueta
             );
             }

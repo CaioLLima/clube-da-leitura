@@ -16,8 +16,8 @@
             Console.WriteLine($"Controle de {nomeEntidade}");
             Console.WriteLine("O que deseja realizar?");
             Console.WriteLine($"1 - Registrar {nomeEntidade}");
-            Console.WriteLine($"2 - Editar {nomeEntidade}");
-            Console.WriteLine($"3 - Visualizar {nomeEntidade}");
+            Console.WriteLine($"2 - Visualizar {nomeEntidade}");
+            Console.WriteLine($"3 - Editar {nomeEntidade}");
             Console.WriteLine($"4 - Excluir {nomeEntidade}");
             Console.WriteLine("S - Sair");
 
@@ -40,9 +40,6 @@
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(erros);
                 Console.ResetColor();
-
-                Console.Write("\nDigite ENTER para continuar...");
-                Console.ReadLine();
 
                 CadastrarRegistro();
 
